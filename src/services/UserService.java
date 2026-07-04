@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class UserService {
 
-    public  boolean createUser() {
+    public boolean createUser() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter student ID");
         int id = sc.nextInt();
@@ -22,10 +22,15 @@ public class UserService {
 
         User u = new User(scity, sage, sname, id);
         UserDao userDao = new UserDao();
-        sc.close();
-        if(userDao.saveUser(u)){
-            return true;
-        }
-        return false;
+        return userDao.saveUser(u);
+    }
+
+    public User getUser() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Student ID");
+        int studId = sc.nextInt();
+        sc.nextLine();
+        UserDao userDao = new UserDao();
+        return userDao.getUser(studId);
     }
 }
